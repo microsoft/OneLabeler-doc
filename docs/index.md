@@ -14,7 +14,7 @@ If you want to use OneLabeler to develop your own data labeling tool, please che
 If you want to see if someone has already used OneLabeler to build a data labeling tool that meets your needs, have a look at the [built-in templates](#built-in-templates) of OneLabeler and our [gallery of created data labeling tools](./gallery.md).
 
 ::: details Watch a demo video walking through the usages of OneLabeler
-<iframe :src="$withBase('/video.mp4')" style="width: 100%; max-height: 60vh;" alt="demo"></iframe>
+<iframe :src="$withBase('/video.mp4')" style="width: 100%; height: 60vh;" alt="demo"></iframe>
 :::
 
 ## Getting Started
