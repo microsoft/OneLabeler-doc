@@ -14,7 +14,7 @@ If you want to use OneLabeler to develop your own data labeling tool, please che
 If you want to see if someone has already used OneLabeler to build a data labeling tool that meets your needs, have a look at the [built-in templates](#built-in-templates) of OneLabeler and our [gallery of created data labeling tools](./gallery.md).
 
 ::: details Watch a demo video walking through the usages of OneLabeler
-<iframe src="/video.mp4" style="width: 100%; max-height: 60vh;" alt="demo"></iframe>
+<iframe :src="$withBase('/video.mp4')" style="width: 100%; max-height: 60vh;" alt="demo"></iframe>
 :::
 
 ## Getting Started
@@ -81,7 +81,7 @@ You may refer to our [writing](link-removed-for-anonymity) for detailed explanat
 
 Within the OneLabeler interface as shown below, the user can visually configure the data labeling workflow.
 
-<img src="/interface-overview.png">
+<img :src="$withBase('/interface-overview.png')">
 
 The expected usage of OneLabeler interface is that the developer first choose a [built-in template](#built-in-templates) closest to the required data labeling workflow.
 Then, the developer [edit](#editing) nodes and edges of the template.
@@ -95,23 +95,23 @@ To visually configure the data labeling workflow, the developer has to carry out
 
 - Create a Node
 
-<img style="max-height: 40vh" src="/create-node.gif">
+<img style="max-height: 40vh" :src="$withBase('/create-node.gif')">
 
 - Configure a Node
 
-<img style="max-height: 40vh" src="/config-node.gif">
+<img style="max-height: 40vh" :src="$withBase('/config-node.gif')">
 
 - Remove a Node
 
-<img style="max-height: 40vh" src="/remove-node.gif">
+<img style="max-height: 40vh" :src="$withBase('/remove-node.gif')">
 
 - Create an Edge
 
-<img style="max-height: 40vh" src="/create-edge.gif">
+<img style="max-height: 40vh" :src="$withBase('/create-edge.gif')">
 
 - Remove an Edge
 
-<img style="max-height: 40vh" src="/remove-edge.gif">
+<img style="max-height: 40vh" :src="$withBase('/remove-edge.gif')">
 
 ### Linting
 
@@ -144,11 +144,11 @@ In the OneLabeler interface, the violated linting rules will be displayed in the
 
 For example, below shows the console panel that says the node indegree and outdegree requirements are violated:
 
-<img src="/linting-errors.png">
+<img :src="$withBase('/linting-errors.png')">
 
 Below shows the console panel when all the linting rules are passed:
 
-<img src="/linting-pass.png">
+<img :src="$withBase('/linting-pass.png')">
 
 ### Runtime Debugging
 
@@ -161,19 +161,19 @@ The prototype preview is updated realtime as the developer edits the workflow.
 
 Below shows a preview of an image classification tool:
 
-<img src="/prototype-preview.png">
+<img :src="$withBase('/prototype-preview.png')">
 
 #### Juxtaposing Workflow and Prototype
 
 The developer can choose to juxtapose the workflow and the prototype preview as below:
 
-<img src="/docking.png">
+<img :src="$withBase('/docking.png')">
 
 #### Variable Inspector
 
 When using the prototype preview, the developer can inspect the internal states of the labeling tool in the variable inspector panel as below:
 
-<img style="max-height: 50vh" src="/variable-inspector.png">
+<img style="max-height: 50vh" :src="$withBase('/variable-inspector.png')">
 
 ### Exporting
 
@@ -184,7 +184,7 @@ The created data labeling tool can be exported in three formats:
 - as a zip file of the source code.
 
 ::: tip The export buttons in the interface
-<img src="/export.png">
+<img :src="$withBase('/export.png')">
 :::
 
 ## Built-in Modules
