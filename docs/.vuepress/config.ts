@@ -16,5 +16,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/gallery',
       '/background',
     ],
+    contributors: false,
+    lastUpdated: false,
   },
 })
