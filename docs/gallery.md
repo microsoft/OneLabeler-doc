@@ -1,0 +1,24 @@
+# Gallery
+
+A gallery of data labeling tools created with OneLabeler.
+
+## Image Classification
+
+Demo video:
+<iframe src="/image-classification.mp4" style="width: 100%; height: 60vh;"></iframe>
+
+## Image Segmentation
+
+Demo video:
+<iframe src="/image-segmentation.mp4" style="width: 100%; height: 60vh;"></iframe>
+
+## Text Span Tagging
+
+Demo video:
+<iframe src="/text-span-tagging.mp4" style="width: 100%; height: 60vh;"></iframe>
+
+## Video Temporal Segmentation
+
+Demo video:
+<iframe src="/video-temporal-segmentation.mp4" style="width: 100%; height: 60vh;"></iframe>
+
