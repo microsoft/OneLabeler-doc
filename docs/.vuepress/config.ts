@@ -1,8 +1,11 @@
 import { defineUserConfig } from 'vuepress'
 import type { DefaultThemeOptions } from 'vuepress'
 
+// const base = '';
+const base = '/OneLabeler.github.io/';
+
 export default defineUserConfig<DefaultThemeOptions>({
-  base: '/OneLabeler.github.io/',
+  base,
   lang: 'en-US',
   title: 'OneLabeler',
   description: 'Just playing around',
@@ -12,8 +15,11 @@ export default defineUserConfig<DefaultThemeOptions>({
     sidebar: [
       '/',
       '/installation',
-      '/advanced',
+      '/builtins',
+      '/linting',
       '/gallery',
+      '/customization',
+      '/api',
       '/background',
     ],
     contributors: false,

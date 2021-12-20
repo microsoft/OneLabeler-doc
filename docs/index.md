@@ -4,22 +4,32 @@
 
 OneLabeler is a **framework for building data labeling tools**.
 OneLabeler is targeted at developers who want to build custom [data labeling tools](background/#what-is-a-data-labeling-tool) for their data-driven applications.
-It features a [visual programming interface](#visual-programming-in-onelabeler) where the developer can compose interface modules and algorithm modules into a data labeling tool.
+It features a [visual programming interface](#visual-programming) where the developer can compose high-level interface modules and algorithm modules into a data labeling tool.
 
-OneLabeler builds in a [collection of implementations](#built-in-modules) of interface modules and algorithm modules with such the developer can compose data labeling tools without textual programming.
-Meanwhile, it is also possible to create customized interface modules and algorithm modules following the [module API design](#module-api-design) of OneLabeler.
+OneLabeler builds in a collection of [implementations](builtins/#computation-modules) of interface modules and algorithm modules with which the developer can compose data labeling tools without textual programming.
+Meanwhile, it is also possible to create customized interface modules and algorithm modules following the [module API design](api/#module) of OneLabeler.
 
-If you want to use OneLabeler to develop your own data labeling tool, please check our documentation that [walks through](#getting-started) major processes of building a data labeling tool with OneLabeler and illustrates [advanced usages](./advanced.md).
+- If you want to use OneLabeler to develop your own data labeling tool, please follow this introduction that walks through major functionalities of OneLabeler.
+You may look up customization [instructions](customization/#customization) when you want to build customize modules.
+- If you are looking for readily built data labeling tools that meet your needs, have a look at the [builtin labeling tool templates](builtins/#labeling-tool-templates) of OneLabeler and our [gallery](./gallery.md) of created data labeling tools.
 
-If you want to see if someone has already used OneLabeler to build a data labeling tool that meets your needs, have a look at the [built-in templates](#built-in-templates) of OneLabeler and our [gallery of created data labeling tools](./gallery.md).
+Below shows the visual programming interface of OneLabeler for creating data labeling tools.
 
-::: details Watch a demo video walking through the usages of OneLabeler
+<img :src="$withBase('/dev-interface/screenshot.png')">
+
+Below shows the preview interface of OneLabeler showing a preview of a created data labeling tool.
+
+<img :src="$withBase('/preview-interface/screenshot.png')">
+
+We will explain the usages of the visual programming interface and the preview interface in the following.
+
+::: details Watch a demo video of the usages of OneLabeler
 <iframe :src="$withBase('/video.mp4')" style="width: 100%; height: 60vh;" alt="demo"></iframe>
 :::
 
 ## Getting Started
 
-OneLabeler can be installed with docker:
+OneLabeler can be launched with docker with the following commands:
 
 ```bash
 git clone <link-removed-for-anonymity> OneLabeler
@@ -27,22 +37,23 @@ cd OneLabeler
 docker compose up
 ```
 
-OneLabeler should then be accessible at `localhost:8080` as a web application.
-
-More details can be found at the [installation Instructions](./Installation.md).
+OneLabeler should then be accessible at `localhost:8080` as a web application.<br>
+More details on installation can be found at the installation [instructions](./installation.md).
 
 ## Basic Concepts
 
 ### Data Labeling Workflow
 
-In OneLabeler, a data labeling tool is modeled as a flowchart depicting a workflow.
-A node in the flowchart represents an interface module or an algorithm module, which corresponds to a human/machine/mixed computation procedure.
-An edge in the flowchart represents the execution order between two nodes.
-The nodes in share a global storage from which the nodes can fetch inputs.
+In OneLabeler, a data labeling tool is modeled as a **flowchart** depicting a workflow.
+A node in the flowchart represents an **interface/algorithm module**, which corresponds to a **human/machine/mixed computation procedure**.
+An edge in the flowchart represents the **execution order**.
+
+In OneLabeler, the data labeling tool follows a [blackboard](https://en.wikipedia.org/wiki/Blackboard_(design_pattern)) storage model.
+Each module fetches input from the "blackboard" (i.e., a global storage) and writes its output onto the "blackboard".
 
 :::danger Edge Semantics
 The edges in OneLabeler's flowchart model **only represent execution order**.
-The edges **DO NOT transmit data**.
+As OneLabeler adopts the blackboard model, the edges **DO NOT transmit data**.
 Instead, the module inputs are fetched from the global storage.
 The module outputs are stored to the global storage.
 :::
@@ -50,109 +61,166 @@ The module outputs are stored to the global storage.
 ### States and Modules
 
 In the following, we refer to variables stored in the global storage as **states** and the interface and algorithm modules as **modules**.
-
 OneLabeler assumes a fixed set of states and types of modules to be used in data labeling tools.
+
 Specifically, it assumes seven states:
 
 - **Data Objects**: the list of entities to be labeled.
+    - Examples: images, videos, audios, text documents.
 - **Labels**: the list of annotations assigned to entities.
+    - Examples: classification labels, segmentation masks, named entities.
 - **Features**: the list of feature representations of entities.
 - **Model**: a machine-learned predictive model.
+    - Examples: decision tree, SVM.
 - **Samples**: an entity subset annotators work with a time.
 - **Categories**: the list of valid label categories.
+    - Examples: ['dog', 'cat'], ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].
 - **Stop**: whether the data labeling process is finished and should stop.
 
-and eight type of modules:
+OneLabeler's blackboard storage model stores these seven states.
+The seven states are visible in the OneLabeler system's [variable inspector](#variable-inspector).
+The data structure of the states can be found [here](advanced/#state-data-structure).
+
+OneLabeler assumes eight type of modules:
 
 - **Interactive Labeling**: the core type of modules where annotators carry out labeling tasks in an interface.
+    - Examples: an interface that shows data objects in a grid layout for the annotators to assign labels
 - **Data Object Selection**: the type of modules that determines the order for data objects to be selected and labeled by annotators.
+    - Examples: [active learning algorithms](https://en.wikipedia.org/wiki/Active_learning) and any other algorithm that can be used to sort the data objects such as random shuffle.
 - **Model Training**: the type of modules that trains/updates a learning model (that may serve as input to other modules) with newly gathered labels.
+    - Examples: calling the .fit method to retrain a scikit-learn model, incrementally update a neural network with a certain optimizer.
 - **Feature Extraction**: the type of modules that turns data objects into feature representations, typically vectors, facilitating other modules that cannot work with raw data objects (e.g., model training).
+    - Examples: [singular value decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition), [handcrafted feature engineering method](https://en.wikipedia.org/wiki/Feature_engineering).
 - **Default Labeling**: the type of modules that assigns tentative labels to data objects, simplifying annotators’ work from creating labels to verification and correction.
+    - Examples: using a machine-learned model to predict labels to data objects as default, using handcrafted domain specific heuristics to assign labels to data objects by rules.
 - **Quality Assurance**: the type of modules that reviews label quality and corrects erroneous labels.
+    - Examples: going through all the data objects one by one and correct the mislabeled data objects.
 - **Stoppage Analysis**: the type of modules that decides whether to keep assigning tasks to annotators or stop.
+    - Examples: checking all the data objects are labeled, [stopping criterion in active learning](https://scholar.google.co.uk/scholar?q=active+learning+stopping+criterion).
 - **Label Ideation**: the type of modules that develops the label categories used for labeling.
 
-You may refer to our [writing](link-removed-for-anonymity) for detailed explanation why we assume these states and types of modules.
+OneLabeler builds in various implementations of the modules as described [here](builtins/#computation-modules).
+
+If you wonder why we assume these states and types of modules, you may refer to our [writing](link-removed-for-anonymity) for detailed explanation.
 
 ## Visual Programming
 
+OneLabeler provides a [visual programming](https://en.wikipedia.org/wiki/Visual_programming_language) interface where the user can visually configure the data labeling workflow without textual programming.
+
 ### Interface Overview
 
-Within the OneLabeler interface as shown below, the user can visually configure the data labeling workflow.
+<img :src="$withBase('/dev-interface/overview.svg')">
 
-<img :src="$withBase('/interface-overview.png')">
+The above shows the OneLabeler interface.
+The expected procedure of using it to build a labeling tool is as follows:
 
-The expected usage of OneLabeler interface is that the developer first choose a [built-in template](#built-in-templates) closest to the required data labeling workflow.
-Then, the developer [edit](#editing) nodes and edges of the template.
-During the editing process, the developer can check the [linting messages](#linting) and fix the errors.
-After finishing a first draft of the workflow, the developer can use the created prototype labeling tool and conduct [runtime debugging](#runtime-debugging) of the prototype.
-When the developer verify that the prototype works as expected, the created labeling tool can be [exported](#exporting).
+- The developer first opens the *template menu* and chooses a [builtin template](builtins/#labeling-tool-templates) closest to the required data labeling workflow.
+- Then, the developer [edits](#editing-a-workflow) nodes and edges of the template workflow in the *workflow canvas* according to the application requirements.
+- During the editing process, the developer checks the [linting messages](linting/#linting-rules) in the *console panel* and fix the errors.
+- After finishing a first draft of the workflow, the developer can use the created prototype labeling tool and conduct [runtime debugging](#runtime-debugging) of the prototype to determine if the workflow needs further revision.
+- When the developer confirms that the prototype works as expected, the created labeling tool can be [exported](#exporting-a-labeling-tool).
 
-### Editing
+### Editing a Workflow
 
-To visually configure the data labeling workflow, the developer has to carry out the following operations:
+To visually configure the data labeling workflow, the developer can carry out the following operations to edit the workflow.
 
-- Create a Node
+Note: **the keyboard operations in the following are enabled only when the canvas is active**, i.e., when the border of the canvas is in black.
 
-<img style="max-height: 40vh" :src="$withBase('/create-node.gif')">
+#### Create a node
 
-- Configure a Node
+Right click the workflow canvas to open the create note menu and then click the needed node type.
 
-<img style="max-height: 40vh" :src="$withBase('/config-node.gif')">
+<img style="max-height: 40vh" :src="$withBase('/editing/create-node.gif')">
 
-- Remove a Node
+There are 10 types of nodes that currently can be created:
 
-<img style="max-height: 40vh" :src="$withBase('/remove-node.gif')">
+- 6 types of **nodes representing computation modules** corresponding to 6 of the 8 types of modules described [above](#states-and-modules), including: feature extraction, data object selection, default labeling, interactive labeling, stoppage analysis, and modeling training
+- an additional type of custom node to accommodate potential modules that does not fit into the 8 types of modules
+- 3 types of **control nodes**, including initialization, conditional branching, and exit
+    - **initialization node** denotes the entry of the workflow and setups the variables shared by the workflow, including data type and label task
+    - **conditional branching node** determines which of the two branches to go according to a boolean condition
+    - **exit node** denotes the end of the workflow
 
-- Create an Edge
+#### Configure a node
 
-<img style="max-height: 40vh" :src="$withBase('/create-edge.gif')">
+Click the node to select it and configure the node parameters in the module settings panel.
 
-- Remove an Edge
+<img style="max-height: 40vh" :src="$withBase('/editing/config-node.gif')">
 
-<img style="max-height: 40vh" :src="$withBase('/remove-edge.gif')">
+The configurable node parameters includes:
 
-### Linting
+- the name of the node that appears in the workflow
+- the module implementation (e.g., whether to use SVD or handcrafted features as the implementation for a feature extraction node)
+    - the list of module implementations available to each type of node is documented [here](builtins/#computation-modules)
+- the hyperparameter of the module implementation
+- (for custom modules) the module inputs and outputs have to be manually configured
+
+#### Move a node
+
+- method 1: mouse drag the node
+- method 2: click the node to select it, and then press the four direction keys (arrow left, arrow right, arrow up, arrow down) on keyboard
+
+<img style="max-height: 40vh" :src="$withBase('/editing/move-node.gif')">
+
+#### Remove a node
+
+- method 1: right click the node to open the menu, and then click "remove"
+- method 2: click the node to select it, and then press `delete` key
+
+<img style="max-height: 40vh" :src="$withBase('/editing/remove-node.gif')">
+
+#### Create an edge
+
+Hover a node to show the node ports, drag the port of one node, and release mouse when hovering on another port of a node.
+
+<img style="max-height: 40vh" :src="$withBase('/editing/create-edge.gif')">
+
+#### Remove an edge
+
+- method 1: right click the edge to open the menu, and then click "remove"
+- method 2: click the edge to select it, and then press `delete` key
+
+<img style="max-height: 40vh" :src="$withBase('/editing/remove-edge.gif')">
+
+#### Multi-select nodes and edges
+
+Brush the canvas to create a selection box.
+
+<img style="max-height: 40vh" :src="$withBase('/editing/multi-select.gif')">
+
+#### Select all nodes and edges
+
+Press `ctrl`+`a`.
+
+<img style="max-height: 40vh" :src="$withBase('/editing/select-all.gif')">
+
+### Linting a Workflow
 
 To assist the developer to create data labeling tools that functions, the created data labeling tool's workflow is validated against several linting rules.
+Linting is triggered each time the developer edits the workflow to provide realtime feedback.
 
-::: details See the full list of linting rules
-- Basic data structure checking
-    - Each node has a unique id
-    - The source and target of each edge are existing nodes
-- Ensuring the graph is a valid flowchart
-    - Contains one initialization node
-    - Contains one exit node
-    - Each node meets indegree and outdegree requirements
-        - An initialization node has indegree 0 and outdegree 1
-        - A decision node has indegree >= 1 and outdegree 2
-        - An exit node has indegree >= 1 and outdegree 0
-        - A process node has indegree >= 1 and outdegree 1
-    - Each node is reachable from the initialization node
-    - Each node can reach the exit node
-    - No self loops for each node
-- Module inputs are initialized before used
-- Module computations are not redundant
-    - After a state is modified, it should not be modified again until it is used as input to a module
-    - After a module is visited, the same module should not be visited again until at least one of its inputs has been modified
-- All traversals visit an interactive labeling node
-- All the module implementations are specified
-:::
+The violated linting rules are displayed in the console panel of the interface.
+The **errors** that **must be fixed** are colored in **red**.
+The **warnings** that denote suspected errors are colored in **yellow**.
+The warnings are for the developer to judge if they are true errors or false positives.
 
-In the OneLabeler interface, the violated linting rules will be displayed in the console panel.
+For example, below shows the console panel that shows two linting error messages.
 
-For example, below shows the console panel that says the node indegree and outdegree requirements are violated:
+<img :src="$withBase('/linting/overview.gif')">
 
-<img :src="$withBase('/linting-errors.png')">
+Mouse hovering the error message highlights the node(s) and edge(s) involved in the error.<br>
+The developer can click the unwrap button to view the details of the message, including which **linting rule** is violated, and **recommended fixes**.
 
-Below shows the console panel when all the linting rules are passed:
+When all the linting rules are satisfied, the console panel shows `🚀 The workflow is valid` as below.
 
-<img :src="$withBase('/linting-pass.png')">
+<img :src="$withBase('/linting/pass.png')">
+
+If you want to understand our rationale of integrating each of the rules, you may refer to our [documentation of linting rules](linting/#linting-rules).
+Meanwhile, it should usually be sufficient that you take the linting rules for granted and fix them according to the instructions in the recommended fixes.
 
 ### Runtime Debugging
 
-In OneLabeler, the developer can debug the created data labeling tool at runtime.
+After creating a workflow, the developer may debug the created data labeling tool at runtime and verify if it functions as expected, and then decide if the workflow needs further editing.
 
 #### Prototype Preview
 
@@ -161,104 +229,30 @@ The prototype preview is updated realtime as the developer edits the workflow.
 
 Below shows a preview of an image classification tool:
 
-<img :src="$withBase('/prototype-preview.png')">
+<img :src="$withBase('/preview-interface/overview.svg')">
 
 #### Juxtaposing Workflow and Prototype
 
-The developer can choose to juxtapose the workflow and the prototype preview as below:
+Teh developer's editing in the workflow panel is immediately updated to the prototype preview.
+For example, adding an interface module will immediately create a new window in the prototype preview.
+Tunning the hyperparameter of an interface module will also immediately update the corresponding window of the interface module.
+
+To take the advantage of the realtime update, the developer can choose to juxtapose the workflow and the prototype preview as below.
+In this way, the developer can efficiently iterate the workflow design.
 
 <img :src="$withBase('/docking.png')">
 
 #### Variable Inspector
 
-When using the prototype preview, the developer can inspect the internal states of the labeling tool in the variable inspector panel as below:
+When using the prototype preview, the developer can inspect the internal states of the labeling tool in the variable inspector panel as below.
+The developer can examine whether the internal states are as expected to assist the debugging of the created workflow.
 
-<img style="max-height: 50vh" :src="$withBase('/variable-inspector.png')">
+<img style="max-height: 50vh" :src="$withBase('/variable-inspector/variable-inspector.gif')">
 
-### Exporting
+### Exporting a Labeling Tool
 
-The created data labeling tool can be exported in three formats:
+The created data labeling tool can be exported in three formats by clicking the compilation options in the interface (as shown in [interface overview](#interface-overview)):
 
 - as an installer
 - as a zip file of bundled code
-- as a zip file of the source code.
-
-::: tip The export buttons in the interface
-<img :src="$withBase('/export.png')">
-:::
-
-## Built-in Modules
-
-OneLabeler builds in the implementation of a variety of interface and algorithm modules at developers' disposal.
-These modules can be composed into data labeling tools without requiring textual programming.
-
-::: details See the full list of built-in modules
-| Module                                                                                                                        | Type                              | interface/algorithm |
-| ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ------------------- |
-| bitmap image                                                                                                                  | interactive labeling - data type  | interface           |
-| text                                                                                                                          | interactive labeling - data type  | interface           |
-| video                                                                                                                         | interactive labeling - data type  | interface           |
-| audio                                                                                                                         | interactive labeling - data type  | interface           |
-| point cloud                                                                                                                   | interactive labeling - data type  | interface           |
-| vector image                                                                                                                  | interactive labeling - data type  | interface           |
-| pdf                                                                                                                           | interactive labeling - data type  | interface           |
-| website                                                                                                                       | interactive labeling - data type  | interface           |
-| classification                                                                                                                | interactive labeling - label task | interface           |
-| multi-label classification                                                                                                    | interactive labeling - label task | interface           |
-| freeform text annotation                                                                                                      | interactive labeling - label task | interface           |
-| object detection                                                                                                              | interactive labeling - label task | interface           |
-| 2D segmentation                                                                                                               | interactive labeling - label task | interface           |
-| 3D segmentation                                                                                                               | interactive labeling - label task | interface           |
-| span tagging                                                                                                                  | interactive labeling - label task | interface           |
-| span relation                                                                                                                 | interactive labeling - label task | interface           |
-| temporal segmentation                                                                                                         | interactive labeling - label task | interface           |
-| single object display                                                                                                         | interactive labeling              | interface           |
-| grid matrix                                                                                                                   | interactive labeling              | interface           |
-| cluster centroids                                                                                                             | data object selection             | algorithm           |
-| cluster index                                                                                                                 | data object selection             | algorithm           |
-| dense areas                                                                                                                   | data object selection             | algorithm           |
-| entropy                                                                                                                       | data object selection             | algorithm           |
-| entropy diversity                                                                                                             | data object selection             | algorithm           |
-| entropy diversity density                                                                                                     | data object selection             | algorithm           |
-| least confident                                                                                                               | data object selection             | algorithm           |
-| smallest margin                                                                                                               | data object selection             | algorithm           |
-| interactive projection                                                                                                        | data object selection             | interface           |
-| [COCO-SSD](https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd)                                                    | default labeling                  | algorithm           |
-| [DeepLab](https://github.com/tensorflow/tfjs-models/tree/master/deeplab)                                                      | default labeling                  | algorithm           |
-| [MobileNet](https://github.com/tensorflow/tfjs-models/tree/master/mobilenet)                                                  | default labeling                  | algorithm           |
-| [POS tagging](https://www.nltk.org/api/nltk.tag.html)                                                                         | default labeling                  | algorithm           |
-| general purpose model prediction                                                                                              | default labeling                  | algorithm           |
-| image bag of words                                                                                                            | feature extraction                | algorithm           |
-| image linear discriminant analysis                                                                                            | feature extraction                | algorithm           |
-| image singular value decomposition                                                                                            | feature extraction                | algorithm           |
-| text non-negative matrix factorization                                                                                        | feature extraction                | algorithm           |
-| [MobileNet](https://github.com/tensorflow/tfjs-models/tree/master/mobilenet) extractor                                        | feature extraction                | algorithm           |
-| retrain [decision tree](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier)                | model training                    | algorithm           |
-| retrain [SVM](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC)                           | model training                    | algorithm           |
-| retrain [logistic regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression)      | model training                    | algorithm           |
-| retrain [RBN](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.BernoulliRBM) | model training                    | algorithm           |
-| online graph-based label propagation                                                                                          | model training                    | algorithm           |
-| one by one checking                                                                                                           | quality assurance                 | interface           |
-| labeled rate                                                                                                                  | stoppage analysis                 | algorithm           |
-| editable label category table                                                                                                 | label ideation                    | interface           |
-:::
-
-## Built-in Templates
-
-OneLabeler builds in a collection of template data labeling tools.
-These templates can be used directly, or used as boilerplate for creating new data labeling tools.
-
-The list of built-in templates:
-
-- audio classification
-- audio temporal segmentation
-- image classification
-- mixed-initiative image classification
-- image segmentation
-- point cloud classification
-- point cloud segmentation
-- text classification
-- text named entity recognition
-- video classification
-- video temporal segmentation
-- webpage classification
+- as a zip file of the source code
