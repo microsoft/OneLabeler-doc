@@ -222,10 +222,10 @@ Meanwhile, it should usually be sufficient that you take the linting rules for g
 
 After creating a workflow, the developer may debug the created data labeling tool at runtime and verify if it functions as expected, and then decide if the workflow needs further editing.
 
-#### Prototype Preview
+#### Labeling Tool Preview
 
-The developer can preview and play with the created prototype in OneLabeler.
-The prototype preview is updated realtime as the developer edits the workflow.
+The developer can preview and play with the created labeling tool in OneLabeler.
+The preview is updated realtime as the developer edits the workflow.
 
 Below shows a preview of an image classification tool:
 
@@ -248,6 +248,11 @@ When using the prototype preview, the developer can inspect the internal states 
 The developer can examine whether the internal states are as expected to assist the debugging of the created workflow.
 
 <img style="max-height: 50vh" :src="$withBase('/variable-inspector/variable-inspector.gif')">
+
+::: warning Notice
+The states in the variable inspector can only be changed by executing the workflow.
+In other words, before a dataset is uploaded to the preview interface and the labeling workflow states, the content in the variable inspector will stay unchanged.
+:::
 
 ### Exporting a Labeling Tool
 

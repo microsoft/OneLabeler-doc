@@ -9,7 +9,7 @@ To utilize the full power of OneLabeler's customization functionalities, you are
 To integrate customized modules into OneLabeler requires editing the source code of OneLabeler.
 We provide a command line interface (CLI) to assist developers to do the customization.
 
-The developer can execute the command `npm run plop` inside the `./client` folder of the source code to activate the command line interface as follows:
+The developer can execute the command `npm run customize` inside the `./client` folder of the source code to activate the command line interface as follows:
 
 ```bash
 cd ./client
