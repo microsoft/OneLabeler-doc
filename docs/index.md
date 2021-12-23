@@ -218,6 +218,12 @@ When all the linting rules are satisfied, the console panel shows `🚀 The work
 If you want to understand our rationale of integrating each of the rules, you may refer to our [documentation of linting rules](linting/#linting-rules).
 Meanwhile, it should usually be sufficient that you take the linting rules for granted and fix them according to the instructions in the recommended fixes.
 
+Note that the **no-uninitialized-inputs** rule can be hard for beginners to debug:
+
+In OneLabeler, the states by default are regarded uninitialized.
+The uninitialized states cannot be used as inputs to modules.
+To initialize a state, it should either be the **return value of a module**, or it is **declared in the initialization module**.
+
 ### Runtime Debugging
 
 After creating a workflow, the developer may debug the created data labeling tool at runtime and verify if it functions as expected, and then decide if the workflow needs further editing.
@@ -251,7 +257,7 @@ The developer can examine whether the internal states are as expected to assist 
 
 ::: warning Notice
 The states in the variable inspector can only be changed by executing the workflow.
-In other words, before a dataset is uploaded to the preview interface and the labeling workflow states, the content in the variable inspector will stay unchanged.
+In other words, before a dataset is uploaded to the preview interface and the labeling workflow starts, the content in the variable inspector will stay unchanged.
 :::
 
 ### Exporting a Labeling Tool
