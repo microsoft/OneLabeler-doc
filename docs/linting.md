@@ -335,9 +335,12 @@ A node that violates this rule corresponds to a program in which a function is c
 
 - When the none of the output states of a node is used as input states to its following nodes in the workflow.
 - When the all the output states of a node is overwritten by other nodes that output the same states before they are used.
+- When the node A's implementation incorrectly declared that state O is its output.
 
 **How to fix violations**:
-Add another node after the node concerned in the error is visited to consume at least one output of the node before the output is overwritten.
+
+- Add another node after the node concerned in the error is visited to consume at least one output of the node before the output is overwritten.
+- Remove state O from the output of node A's implementation.
 
 **When may violations be left unfixed**:
 Violations of this rule should always be fixed.
