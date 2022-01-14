@@ -12,7 +12,7 @@
     "url": "git+https://github.com/zhangyu94/OneLabeler.github.io.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/zhangyu94/OneLabeler.github.io/issues"
   },

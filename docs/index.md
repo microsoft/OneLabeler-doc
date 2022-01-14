@@ -239,7 +239,7 @@ Below shows a preview of an image classification tool:
 
 #### Juxtaposing Workflow and Prototype
 
-Teh developer's editing in the workflow panel is immediately updated to the prototype preview.
+The developer's editing in the workflow panel is immediately updated to the prototype preview.
 For example, adding an interface module will immediately create a new window in the prototype preview.
 Tunning the hyperparameter of an interface module will also immediately update the corresponding window of the interface module.
 

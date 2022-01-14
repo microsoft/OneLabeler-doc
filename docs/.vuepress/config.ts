@@ -11,7 +11,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   description: 'Just playing around',
 
   themeConfig: {
-    // logo: 'https://vuejs.org/images/logo.png',
+    logo: 'favicon.ico',
     sidebar: [
       '/',
       '/installation',
@@ -22,6 +22,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/api',
       '/background',
     ],
+    head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
     contributors: false,
     lastUpdated: false,
   },
