@@ -7,9 +7,9 @@ To utilize the full power of OneLabeler's customization functionalities, you are
 ## CLI
 
 To integrate customized modules into OneLabeler requires editing the source code of OneLabeler.
-We provide a command line interface (CLI) to assist developers to do the customization.
+We provide a command-line interface (CLI) to assist developers to do the customization.
 
-The developer can execute the command `npm run customize` inside the `./client` folder of the source code to activate the command line interface as follows:
+The developer can execute the command `npm run customize` inside the `./client` folder of the source code to activate the command-line interface as follows:
 
 ```bash
 cd ./client
@@ -20,7 +20,7 @@ OneLabeler's CLI will show the following options:
 
 <img :src="$withBase('/cli/entry.png')" style="width: 70%">
 
-The developer can then choose the desired customization type, and follows the instructions as shown in the command line.
+The developer can then choose the desired customization type, and follows the instructions as shown in the command-line.
 
 Currently, OneLabeler's customization CLI supports the following **types of customizations**:
 

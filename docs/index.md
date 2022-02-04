@@ -197,7 +197,7 @@ Press `ctrl`+`a`.
 ### Linting a Workflow
 
 To assist the developer to create data labeling tools that functions, the created data labeling tool's workflow is validated against several linting rules.
-Linting is triggered each time the developer edits the workflow to provide realtime feedback.
+Linting is triggered each time the developer edits the workflow to provide real-time feedback.
 
 The violated linting rules are displayed in the console panel of the interface.
 The **errors** that **must be fixed** are colored in **red**.
@@ -231,7 +231,7 @@ After creating a workflow, the developer may debug the created data labeling too
 #### Labeling Tool Preview
 
 The developer can preview and play with the created labeling tool in OneLabeler.
-The preview is updated realtime as the developer edits the workflow.
+The preview is updated real-time as the developer edits the workflow.
 
 Below shows a preview of an image classification tool:
 
@@ -243,7 +243,7 @@ The developer's editing in the workflow panel is immediately updated to the prot
 For example, adding an interface module will immediately create a new window in the prototype preview.
 Tunning the hyperparameter of an interface module will also immediately update the corresponding window of the interface module.
 
-To take the advantage of the realtime update, the developer can choose to juxtapose the workflow and the prototype preview as below.
+To take the advantage of the real-time update, the developer can choose to juxtapose the workflow and the prototype preview as below.
 In this way, the developer can efficiently iterate the workflow design.
 
 <img :src="$withBase('/docking.png')">

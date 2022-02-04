@@ -383,4 +383,4 @@ This rule validates the workflow used model training in a loop to iteratively up
 
 **When may violations be left unfixed**:
 This rule is a recommended but **not compulsory**.
-In the cases where the model update is time consuming, the developer can well ignore this rule.
+In the cases where the model update is time-consuming, the developer can well ignore this rule.

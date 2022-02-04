@@ -110,6 +110,113 @@ type Label = {
 }
 ```
 
+#### Built-in Label Types
+
+Below lists the data structure of labels created with built-in label tasks.
+
+```typescript
+/** The label for classification. */
+const category: Category;
+```
+
+```typescript
+/** The label for multi-label classification. */
+const categories: Category[];
+```
+
+```typescript
+/** The label for freeform-text annotation. */
+const text: { content: string };
+```
+
+```typescript
+enum ShapeType {
+  Polygon = 'Polygon',
+  Rect = 'Rect',
+  Point = 'Point',
+}
+type Point = [number, number];
+type LabelShape = {
+  category: Category;
+  shape: ShapeType;
+  contour: Point[] | Point;
+  uuid: string;
+}
+
+/** The label for geometric object annotation. */
+const shapes: LabelShape[];
+```
+
+```typescript
+/** The label for pixel-level segmentation. */
+const mask: {
+  /** The mask content as base64 string. */
+  content: string | null;
+  /** The color encoding of the stored mask image. */
+  label2color?: { [key: string]: number | [number, number, number] } | null;
+  /** The width of the mask. */
+  width?: number | null;
+  /** The height of the mask. */
+  height?: number | null;
+}
+```
+
+```typescript
+/** The interface of the named entity label of a text data object. */
+type LabelTextSpan = {
+  /** The string of the entity. */
+  text: string | null;
+  /** The index of the entity's first character in the original text. */
+  start: number;
+  /** The index of the entity's first character after the original text. */
+  end: number;
+  /** The category of the entity. */
+  category: Category;
+  /** The uuid for differentiating spans with the same content. */
+  uuid: string;
+}
+
+/** The label for named-entity recognition. */
+const textSpans: LabelTextSpan[];
+```
+
+```typescript
+/** The interface of the temporal span of a video/audio data object. */
+type LabelTimeSpan = {
+  /** The timestamp of the first frame. */
+  start: number;
+  /** The timestamp of the final frame. */
+  end: number;
+  /** The category of the span. */
+  category: Category;
+  /** The uuid for differentiating spans with the same content. */
+  uuid: string;
+}
+
+/** The label for temporal segmentation. */
+const timeSpans: LabelTimeSpan[];
+```
+
+```typescript
+/** The interface of the relation between two annotations. */
+type LabelRelation = {
+  /** The uuid of the source annotation. */
+  sourceUuid: string;
+  /** The uuid of the target annotation. */
+  targetUuid: string;
+  /** The uuid of the annotation itself. */
+  uuid: string;
+}
+
+/** The label for text/time span relation annotation. */
+const relations: LabelRelation[];
+```
+
+```typescript
+/** The label for 3d segmentation. */
+const pointLabels: Category[];
+```
+
 ### Features
 
 The list of feature representations of entities.

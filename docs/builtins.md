@@ -40,7 +40,7 @@ These modules can be composed into data labeling tools without requiring textual
 | [DeepLab](https://github.com/tensorflow/tfjs-models/tree/master/deeplab)                                                      | default labeling                  | algorithm           |
 | [MobileNet](https://github.com/tensorflow/tfjs-models/tree/master/mobilenet)                                                  | default labeling                  | algorithm           |
 | [POS tagging](https://www.nltk.org/api/nltk.tag.html)                                                                         | default labeling                  | algorithm           |
-| general purpose model prediction                                                                                              | default labeling                  | algorithm           |
+| general-purpose model prediction                                                                                              | default labeling                  | algorithm           |
 | image bag of words                                                                                                            | feature extraction                | algorithm           |
 | image linear discriminant analysis                                                                                            | feature extraction                | algorithm           |
 | image singular value decomposition                                                                                            | feature extraction                | algorithm           |
