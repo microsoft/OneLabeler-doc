@@ -26,7 +26,7 @@
 	{
 		"title": "Video Segmentation",
 		"image": "gallery/video-temporal-segmentation/screenshot.png",
-		"video": "gallery/video-temporal-segmentation/demo.mp4",
+		"——video": "gallery/video-temporal-segmentation/demo.mp4",
 		"installer": "gallery/video-temporal-segmentation/installer.exe",
 		"workflow": "gallery/video-temporal-segmentation/workflow.config.json",
 		"abstract": "A basic video temporal segmentation tool."
@@ -35,14 +35,14 @@
 		"title": "Audio Segmentation",
 		"image": "gallery/audio-temporal-segmentation/screenshot.png",
 		"_video": "gallery/audio-temporal-segmentation/demo.mp4",
-		"_installer": "gallery/audio-temporal-segmentation/installer.exe",
+		"installer": "gallery/audio-temporal-segmentation/installer.exe",
 		"workflow": "gallery/audio-temporal-segmentation/workflow.config.json",
 		"abstract": "A basic audio temporal segmentation tool."
 	},
 	{
 		"title": "Point Cloud Classification",
 		"image": "gallery/point-cloud-classification/screenshot.png",
-		"video": "gallery/point-cloud-classification/demo.mp4",
+		"_video": "gallery/point-cloud-classification/demo.mp4",
 		"installer": "gallery/point-cloud-classification/installer.exe",
 		"workflow": "gallery/point-cloud-classification/workflow.config.json",
 		"abstract": "A basic point cloud classification tool."
@@ -50,7 +50,7 @@
 	{
 		"title": "Webpage Classification",
 		"image": "gallery/webpage-classification/screenshot.png",
-		"video": "gallery/webpage-classification/demo.mp4",
+		"_video": "gallery/webpage-classification/demo.mp4",
 		"installer": "gallery/webpage-classification/installer.exe",
 		"workflow": "gallery/webpage-classification/workflow.config.json",
 		"abstract": "A basic webpage classification tool."
