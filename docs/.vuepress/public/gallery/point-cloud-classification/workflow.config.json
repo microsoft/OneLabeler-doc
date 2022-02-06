@@ -1,0 +1,462 @@
+{
+    "nodes": [
+        {
+            "label": "initialization",
+            "type": "Initialization",
+            "value": {
+                "type": "Initialization",
+                "label": "Base Initialization",
+                "id": "BaseInitialization",
+                "inputs": [],
+                "outputs": [
+                    "dataObjects",
+                    "labels"
+                ],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "params": {
+                    "dataType": {
+                        "value": "PointCloud",
+                        "label": "Data Type",
+                        "options": [
+                            {
+                                "value": "Audio",
+                                "label": "audio"
+                            },
+                            {
+                                "value": "Image",
+                                "label": "image"
+                            },
+                            {
+                                "value": "VectorImage",
+                                "label": "vector image"
+                            },
+                            {
+                                "value": "Video",
+                                "label": "video"
+                            },
+                            {
+                                "value": "YoutubeVideo",
+                                "label": "youtube video"
+                            },
+                            {
+                                "value": "PDF",
+                                "label": "pdf"
+                            },
+                            {
+                                "value": "PointCloud",
+                                "label": "point cloud"
+                            },
+                            {
+                                "value": "Webpage",
+                                "label": "webpage"
+                            },
+                            {
+                                "value": "Text",
+                                "label": "text"
+                            },
+                            {
+                                "value": "CustomVectorImage",
+                                "label": "custom vector image"
+                            }
+                        ]
+                    },
+                    "labelTasks": {
+                        "value": [
+                            "Classification"
+                        ],
+                        "label": "Label Tasks",
+                        "options": [
+                            {
+                                "value": "Classification",
+                                "label": "classification"
+                            },
+                            {
+                                "value": "MultiLabelClassification",
+                                "label": "multi-label classification"
+                            },
+                            {
+                                "value": "FreeformText",
+                                "label": "freeform text"
+                            },
+                            {
+                                "value": "ObjectDetection",
+                                "label": "object detection"
+                            },
+                            {
+                                "value": "Segmentation2d",
+                                "label": "2d segmentation"
+                            },
+                            {
+                                "value": "Segmentation3d",
+                                "label": "3d segmentation"
+                            },
+                            {
+                                "value": "SpanClassification",
+                                "label": "span tagging"
+                            },
+                            {
+                                "value": "AnnotationRelation",
+                                "label": "span relation"
+                            },
+                            {
+                                "value": "CustomMultiLabelClassification",
+                                "label": "custom multi-label classification"
+                            },
+                            {
+                                "value": "CustomFreeformText",
+                                "label": "custom freeform text"
+                            }
+                        ],
+                        "multiple": true
+                    }
+                }
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 20,
+                "y": 20
+            },
+            "id": "initialization"
+        },
+        {
+            "label": "random sampling",
+            "type": "DataObjectSelection",
+            "value": {
+                "type": "DataObjectSelection",
+                "label": "Random",
+                "id": "Random-73417867",
+                "inputs": [
+                    "labels"
+                ],
+                "outputs": [
+                    "queryUuids"
+                ],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "api": "Random",
+                "params": {
+                    "nBatch": {
+                        "value": 16,
+                        "label": "Selection Batch Size",
+                        "options": [
+                            {
+                                "value": 1,
+                                "label": "1"
+                            },
+                            {
+                                "value": 2,
+                                "label": "2"
+                            },
+                            {
+                                "value": 4,
+                                "label": "4"
+                            },
+                            {
+                                "value": 16,
+                                "label": "16"
+                            },
+                            {
+                                "value": 32,
+                                "label": "32"
+                            },
+                            {
+                                "value": 48,
+                                "label": "48"
+                            },
+                            {
+                                "value": 64,
+                                "label": "64"
+                            },
+                            {
+                                "value": 96,
+                                "label": "96"
+                            }
+                        ]
+                    }
+                }
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 180,
+                "y": 20
+            },
+            "id": "random sampling"
+        },
+        {
+            "label": "grid matrix",
+            "type": "InteractiveLabeling",
+            "value": {
+                "type": "InteractiveLabeling",
+                "label": "Grid Matrix",
+                "id": "GridMatrix-89670576",
+                "inputs": [
+                    "dataObjects",
+                    "labels",
+                    "queryUuids"
+                ],
+                "outputs": [
+                    "labels"
+                ],
+                "blocking": true,
+                "persistent": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "params": {
+                    "nRows": {
+                        "value": 1,
+                        "label": "Number of Objects per Column",
+                        "options": [
+                            {
+                                "value": 1,
+                                "label": "1"
+                            },
+                            {
+                                "value": 2,
+                                "label": "2"
+                            },
+                            {
+                                "value": 4,
+                                "label": "4"
+                            },
+                            {
+                                "value": 6,
+                                "label": "6"
+                            },
+                            {
+                                "value": 8,
+                                "label": "8"
+                            }
+                        ]
+                    },
+                    "nColumns": {
+                        "value": 1,
+                        "label": "Number of Objects per Row",
+                        "options": [
+                            {
+                                "value": 1,
+                                "label": "1"
+                            },
+                            {
+                                "value": 2,
+                                "label": "2"
+                            },
+                            {
+                                "value": 4,
+                                "label": "4"
+                            },
+                            {
+                                "value": 8,
+                                "label": "8"
+                            },
+                            {
+                                "value": 12,
+                                "label": "12"
+                            }
+                        ]
+                    }
+                }
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 340,
+                "y": 20
+            },
+            "id": "grid matrix"
+        },
+        {
+            "label": "check all labeled",
+            "type": "StoppageAnalysis",
+            "value": {
+                "type": "StoppageAnalysis",
+                "label": "All Checked",
+                "id": "AllChecked-46322013",
+                "inputs": [
+                    "labels"
+                ],
+                "outputs": [
+                    "stop"
+                ],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 500,
+                "y": 20
+            },
+            "id": "check all labeled"
+        },
+        {
+            "label": "stop?",
+            "type": "Decision",
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 500,
+                "y": 120
+            },
+            "id": "stop?",
+            "value": {
+                "inputs": [
+                    "stop"
+                ],
+                "outputs": [],
+                "id": "BaseConditionalBranching",
+                "label": "Base Conditional Branching",
+                "type": "Decision",
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "params": {
+                    "criteria": {
+                        "value": "stop == true ?",
+                        "label": "Branching Criteria",
+                        "options": [
+                            {
+                                "label": "stop == true ?",
+                                "value": "stop == true ?"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "exit",
+            "type": "Exit",
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 500,
+                "y": 220
+            },
+            "id": "exit",
+            "value": {
+                "type": "Exit",
+                "label": "Base Exit",
+                "id": "BaseExit",
+                "inputs": [
+                    "labels"
+                ],
+                "outputs": [],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true
+            }
+        }
+    ],
+    "edges": [
+        {
+            "source": "initialization",
+            "target": "random sampling",
+            "id": "edc1bb1e-5ab3-4134-a0ff-578fcc15eee6",
+            "layout": {
+                "source": {
+                    "dx": 120,
+                    "dy": 40,
+                    "direction": "Right"
+                },
+                "target": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                }
+            }
+        },
+        {
+            "source": "random sampling",
+            "target": "grid matrix",
+            "id": "574dce98-8fd2-4790-aa23-4bbd4a723c37",
+            "layout": {
+                "source": {
+                    "dx": 120,
+                    "dy": 40,
+                    "direction": "Right"
+                },
+                "target": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                }
+            }
+        },
+        {
+            "source": "grid matrix",
+            "target": "check all labeled",
+            "id": "1cdf395e-255b-4d1a-94f6-7bf9e7a16db2",
+            "layout": {
+                "source": {
+                    "dx": 120,
+                    "dy": 40,
+                    "direction": "Right"
+                },
+                "target": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                }
+            }
+        },
+        {
+            "source": "check all labeled",
+            "target": "stop?",
+            "id": "728f358a-36ad-42d0-8b23-f3b1e1e4bfca",
+            "layout": {
+                "source": {
+                    "dx": 60,
+                    "dy": 80,
+                    "direction": "Bottom"
+                },
+                "target": {
+                    "dx": 60,
+                    "dy": 0,
+                    "direction": "Top"
+                }
+            }
+        },
+        {
+            "source": "stop?",
+            "target": "exit",
+            "condition": true,
+            "id": "0481b272-1d59-4bf6-a97a-a8299fa4efc6",
+            "layout": {
+                "source": {
+                    "dx": 60,
+                    "dy": 80,
+                    "direction": "Bottom"
+                },
+                "target": {
+                    "dx": 60,
+                    "dy": 0,
+                    "direction": "Top"
+                }
+            }
+        },
+        {
+            "source": "stop?",
+            "target": "random sampling",
+            "condition": false,
+            "layout": {
+                "source": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                },
+                "target": {
+                    "dx": 60,
+                    "dy": 80,
+                    "direction": "Bottom"
+                }
+            },
+            "id": "ac610b95-427f-4b06-895e-7f69bd673da4"
+        }
+    ]
+}

@@ -1,0 +1,82 @@
+[
+	{
+		"title": "Image Classification",
+		"image": "gallery/image-classification/screenshot.png",
+		"video": "gallery/image-classification/demo.mp4",
+		"installer": "gallery/image-classification/installer.exe",
+		"workflow": "gallery/image-classification/workflow.config.json",
+		"abstract": "A basic image classification tool."
+	},
+	{
+		"title": "Image Segmentation",
+		"image": "gallery/image-segmentation/screenshot.png",
+		"video": "gallery/image-segmentation/demo.mp4",
+		"installer": "gallery/image-segmentation/installer.exe",
+		"workflow": "gallery/image-segmentation/workflow.config.json",
+		"abstract": "A basic image segmentation tool."
+	},
+	{
+		"title": "Named-Entity Recognition",
+		"image": "gallery/text-named-entity/screenshot.png",
+		"video": "gallery/text-named-entity/demo.mp4",
+		"installer": "gallery/text-named-entity/installer.exe",
+		"workflow": "gallery/text-named-entity/workflow.config.json",
+		"abstract": "A basic text named-entity recognition tool."
+	},
+	{
+		"title": "Video Segmentation",
+		"image": "gallery/video-temporal-segmentation/screenshot.png",
+		"video": "gallery/video-temporal-segmentation/demo.mp4",
+		"installer": "gallery/video-temporal-segmentation/installer.exe",
+		"workflow": "gallery/video-temporal-segmentation/workflow.config.json",
+		"abstract": "A basic video temporal segmentation tool."
+	},
+	{
+		"title": "Audio Segmentation",
+		"image": "gallery/audio-temporal-segmentation/screenshot.png",
+		"_video": "gallery/audio-temporal-segmentation/demo.mp4",
+		"_installer": "gallery/audio-temporal-segmentation/installer.exe",
+		"workflow": "gallery/audio-temporal-segmentation/workflow.config.json",
+		"abstract": "A basic audio temporal segmentation tool."
+	},
+	{
+		"title": "Point Cloud Classification",
+		"image": "gallery/point-cloud-classification/screenshot.png",
+		"video": "gallery/point-cloud-classification/demo.mp4",
+		"installer": "gallery/point-cloud-classification/installer.exe",
+		"workflow": "gallery/point-cloud-classification/workflow.config.json",
+		"abstract": "A basic point cloud classification tool."
+	},
+	{
+		"title": "Webpage Classification",
+		"image": "gallery/webpage-classification/screenshot.png",
+		"video": "gallery/webpage-classification/demo.mp4",
+		"installer": "gallery/webpage-classification/installer.exe",
+		"workflow": "gallery/webpage-classification/workflow.config.json",
+		"abstract": "A basic webpage classification tool."
+	},
+	{
+		"title": "Machine-Aided Text NER",
+		"image": "gallery/machine-aided-text-named-entity/screenshot.png",
+		"_video": "gallery/machine-aided-text-named-entity/demo.mp4",
+		"_installer": "gallery/machine-aided-text-named-entity/installer.exe",
+		"_workflow": "gallery/machine-aided-text-named-entity/workflow.config.json",
+		"abstract": "A machine-aided text named-entity recognition tool."
+	},
+	{
+		"title": "Mixed-Initiative Classification",
+		"image": "gallery/mixed-initiative-image-classification/screenshot.png",
+		"_video": "gallery/mixed-initiative-image-classification/demo.mp4",
+		"_installer": "gallery/mixed-initiative-image-classification/installer.exe",
+		"_workflow": "gallery/mixed-initiative-image-classification/workflow.config.json",
+		"abstract": "A mixed-initiative image classification tool."
+	},
+	{
+		"title": "Reverse-Engineering VIS",
+		"image": "gallery/reverse-engineering-visualization/screenshot.png",
+		"_video": "gallery/reverse-engineering-visualization/demo.mp4",
+		"_installer": "gallery/reverse-engineering-visualization/installer.exe",
+		"_workflow": "gallery/reverse-engineering-visualization/workflow.config.json",
+		"abstract": "A visualization image reverse-engineering system."
+	}
+]

@@ -8,7 +8,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   base,
   lang: 'en-US',
   title: 'OneLabeler',
-  description: 'Just playing around',
+  description: 'OneLabeler documentation website',
 
   themeConfig: {
     logo: 'favicon.ico',
