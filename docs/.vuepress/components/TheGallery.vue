@@ -7,7 +7,7 @@
     >
       <div
         class="project-img"
-        :style="{ 'background-image': `url(${$withBase(d.image)})` }"
+        :style="{ 'background-image': `url(${d.image})` }"
       />
       <div class="project-details">
         <p style="font-weight: 600; margin: 0;">
@@ -21,7 +21,7 @@
             <a
               v-if="btn.field in d"
               :key="i"
-              :href="$withBase(d[btn.field])"
+              :href="d[btn.field]"
               :title="btn.title"
               class="text-none"
               style="font-size: 0.9em; letter-spacing: 0; padding: 0px;"
@@ -38,6 +38,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import projects from './projects.json';
+
+type Button = {
+  title: string;
+  field: 'video' | 'installer' | 'workflow';
+  icon: string;
+}
 
 export default defineComponent({
   name: 'TheGallery',
@@ -60,7 +66,7 @@ export default defineComponent({
           field: 'workflow',
           icon: '💼',
         },
-      ],
+      ] as Button[],
     };
   },
 });
