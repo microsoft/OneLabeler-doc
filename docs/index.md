@@ -23,9 +23,7 @@ Below shows the preview interface of OneLabeler showing a preview of a created d
 
 We will explain the usages of the visual programming interface and the preview interface in the following.
 
-::: details Watch a demo video of the usages of OneLabeler
-<iframe :src="$withBase('/video.mp4')" style="width: 100%; height: 60vh;" alt="demo"></iframe>
-:::
+<a :href="$withBase('/video.mp4')">📺 Watch a demo video</a>
 
 ## Getting Started
 

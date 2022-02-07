@@ -26,11 +26,14 @@ Currently, OneLabeler's customization CLI supports the following **types of cust
 
 - create a new data type
 - create a new label task type
-- create a new workflow template
 - create a new module
+- create a new workflow template
 - remove an existing data type
 - remove an existing label task type
+- remove an existing module
 - remove an existing workflow template
+- clean the built-in directory
+- merge a directory into the built-in directory
 
 **When the developer choose to create new customized implementations**, including "create a new data type", "create a new label task type", and "create a new workflow template", OneLabeler's customization CLI will automatically create files from the boilerplate and handle the code imports for the corresponding customization.
 In this way, the developer can start working with the files created by the CLI, instead of needing to start from scratch.
