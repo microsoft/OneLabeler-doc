@@ -22,7 +22,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       '/api',
       '/background',
     ],
-    head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+    head: [['link', { rel: 'icon', href: `${base}favicon.ico` }]],
     contributors: false,
     lastUpdated: false,
   },
