@@ -1,0 +1,408 @@
+{
+    "nodes": [
+        {
+            "label": "initialization",
+            "type": "Initialization",
+            "value": {
+                "type": "Initialization",
+                "label": "Base Initialization",
+                "id": "BaseInitialization",
+                "inputs": [],
+                "outputs": [
+                    "dataObjects",
+                    "labels"
+                ],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "params": {
+                    "dataType": {
+                        "value": "Audio",
+                        "label": "Data Type",
+                        "options": [
+                            {
+                                "value": "Audio",
+                                "label": "audio"
+                            },
+                            {
+                                "value": "Image",
+                                "label": "image"
+                            },
+                            {
+                                "value": "VectorImage",
+                                "label": "vector image"
+                            },
+                            {
+                                "value": "Video",
+                                "label": "video"
+                            },
+                            {
+                                "value": "YoutubeVideo",
+                                "label": "youtube video"
+                            },
+                            {
+                                "value": "PDF",
+                                "label": "pdf"
+                            },
+                            {
+                                "value": "PointCloud",
+                                "label": "point cloud"
+                            },
+                            {
+                                "value": "Webpage",
+                                "label": "webpage"
+                            },
+                            {
+                                "value": "Text",
+                                "label": "text"
+                            },
+                            {
+                                "value": "CustomVectorImage",
+                                "label": "custom vector image"
+                            }
+                        ]
+                    },
+                    "labelTasks": {
+                        "value": [
+                            "SpanClassification"
+                        ],
+                        "label": "Label Tasks",
+                        "options": [
+                            {
+                                "value": "Classification",
+                                "label": "classification"
+                            },
+                            {
+                                "value": "MultiLabelClassification",
+                                "label": "multi-label classification"
+                            },
+                            {
+                                "value": "FreeformText",
+                                "label": "freeform text"
+                            },
+                            {
+                                "value": "ObjectDetection",
+                                "label": "object detection"
+                            },
+                            {
+                                "value": "Segmentation2d",
+                                "label": "2d segmentation"
+                            },
+                            {
+                                "value": "Segmentation3d",
+                                "label": "3d segmentation"
+                            },
+                            {
+                                "value": "SpanClassification",
+                                "label": "span tagging"
+                            },
+                            {
+                                "value": "AnnotationRelation",
+                                "label": "span relation"
+                            },
+                            {
+                                "value": "CustomMultiLabelClassification",
+                                "label": "custom multi-label classification"
+                            },
+                            {
+                                "value": "CustomFreeformText",
+                                "label": "custom freeform text"
+                            }
+                        ],
+                        "multiple": true
+                    }
+                }
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 20,
+                "y": 20
+            },
+            "id": "initialization"
+        },
+        {
+            "label": "random sampling",
+            "type": "DataObjectSelection",
+            "value": {
+                "type": "DataObjectSelection",
+                "label": "Random",
+                "id": "Random-73417867",
+                "inputs": [
+                    "labels"
+                ],
+                "outputs": [
+                    "queryUuids"
+                ],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "api": "Random",
+                "params": {
+                    "nBatch": {
+                        "value": 1,
+                        "label": "Selection Batch Size",
+                        "options": [
+                            {
+                                "value": 1,
+                                "label": "1"
+                            },
+                            {
+                                "value": 2,
+                                "label": "2"
+                            },
+                            {
+                                "value": 4,
+                                "label": "4"
+                            },
+                            {
+                                "value": 16,
+                                "label": "16"
+                            },
+                            {
+                                "value": 32,
+                                "label": "32"
+                            },
+                            {
+                                "value": 48,
+                                "label": "48"
+                            },
+                            {
+                                "value": 64,
+                                "label": "64"
+                            },
+                            {
+                                "value": 96,
+                                "label": "96"
+                            }
+                        ]
+                    }
+                }
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 180,
+                "y": 20
+            },
+            "id": "random sampling"
+        },
+        {
+            "label": "single object display",
+            "type": "InteractiveLabeling",
+            "value": {
+                "type": "InteractiveLabeling",
+                "label": "Single Object Display",
+                "id": "SingleObjectDisplay-48263667",
+                "inputs": [
+                    "dataObjects",
+                    "labels",
+                    "queryUuids"
+                ],
+                "outputs": [
+                    "labels"
+                ],
+                "blocking": true,
+                "persistent": true,
+                "isBuiltIn": true,
+                "isServerless": true
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 340,
+                "y": 20
+            },
+            "id": "single object display"
+        },
+        {
+            "label": "check all labeled",
+            "type": "StoppageAnalysis",
+            "value": {
+                "type": "StoppageAnalysis",
+                "label": "All Checked",
+                "id": "AllChecked-46322013",
+                "inputs": [
+                    "labels"
+                ],
+                "outputs": [
+                    "stop"
+                ],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true
+            },
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 500,
+                "y": 20
+            },
+            "id": "check all labeled"
+        },
+        {
+            "label": "stop?",
+            "type": "Decision",
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 500,
+                "y": 120
+            },
+            "id": "stop?",
+            "value": {
+                "inputs": [
+                    "stop"
+                ],
+                "outputs": [],
+                "id": "BaseConditionalBranching",
+                "label": "Base Conditional Branching",
+                "type": "Decision",
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true,
+                "params": {
+                    "criteria": {
+                        "value": "stop == true ?",
+                        "label": "Branching Criteria",
+                        "options": [
+                            {
+                                "label": "stop == true ?",
+                                "value": "stop == true ?"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "label": "exit",
+            "type": "Exit",
+            "layout": {
+                "width": 120,
+                "height": 80,
+                "x": 500,
+                "y": 220
+            },
+            "id": "exit",
+            "value": {
+                "type": "Exit",
+                "label": "Base Exit",
+                "id": "BaseExit",
+                "inputs": [
+                    "labels"
+                ],
+                "outputs": [],
+                "blocking": true,
+                "isBuiltIn": true,
+                "isServerless": true
+            }
+        }
+    ],
+    "edges": [
+        {
+            "source": "initialization",
+            "target": "random sampling",
+            "id": "462fccf1-573c-4be7-940d-c426963cc5c3",
+            "layout": {
+                "source": {
+                    "dx": 120,
+                    "dy": 40,
+                    "direction": "Right"
+                },
+                "target": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                }
+            }
+        },
+        {
+            "source": "random sampling",
+            "target": "single object display",
+            "id": "1b2dd25a-2e1d-4342-bb53-d89a237983df",
+            "layout": {
+                "source": {
+                    "dx": 120,
+                    "dy": 40,
+                    "direction": "Right"
+                },
+                "target": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                }
+            }
+        },
+        {
+            "source": "single object display",
+            "target": "check all labeled",
+            "id": "28f9f7b6-6f7d-48df-bdb4-42b2e155e3fa",
+            "layout": {
+                "source": {
+                    "dx": 120,
+                    "dy": 40,
+                    "direction": "Right"
+                },
+                "target": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                }
+            }
+        },
+        {
+            "source": "check all labeled",
+            "target": "stop?",
+            "id": "86c71c84-36be-4705-be93-dc9c12aaf48f",
+            "layout": {
+                "source": {
+                    "dx": 60,
+                    "dy": 80,
+                    "direction": "Bottom"
+                },
+                "target": {
+                    "dx": 60,
+                    "dy": 0,
+                    "direction": "Top"
+                }
+            }
+        },
+        {
+            "source": "stop?",
+            "target": "exit",
+            "condition": true,
+            "id": "8fa75aea-39b9-4660-9912-aeaad8c6795f",
+            "layout": {
+                "source": {
+                    "dx": 60,
+                    "dy": 80,
+                    "direction": "Bottom"
+                },
+                "target": {
+                    "dx": 60,
+                    "dy": 0,
+                    "direction": "Top"
+                }
+            }
+        },
+        {
+            "source": "stop?",
+            "target": "random sampling",
+            "condition": false,
+            "layout": {
+                "source": {
+                    "dx": 0,
+                    "dy": 40,
+                    "direction": "Left"
+                },
+                "target": {
+                    "dx": 60,
+                    "dy": 80,
+                    "direction": "Bottom"
+                }
+            },
+            "id": "8e603f2a-ffb5-498b-be22-d17ab397d9ee"
+        }
+    ]
+}
