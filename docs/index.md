@@ -122,7 +122,10 @@ The expected procedure of using it to build a labeling tool is as follows:
 
 To visually configure the data labeling workflow, the developer can carry out the following operations to edit the workflow.
 
-Note: **the keyboard operations in the following are enabled only when the canvas is active**, i.e., when the border of the canvas is in black.
+Notes:
+
+- **The keyboard operations in the following are enabled only when the canvas is active**, i.e., when the border of the canvas is in black.
+- After editing workflow, interface will be immediately updated, but the workflow will not run automatically.
 
 #### Create a node
 
@@ -257,6 +260,17 @@ The developer can examine whether the internal states are as expected to assist 
 The states in the variable inspector can only be changed by executing the workflow.
 In other words, before a dataset is uploaded to the preview interface and the labeling workflow starts, the content in the variable inspector will stay unchanged.
 :::
+
+#### Control Flow Manipulation
+
+The developer can manipulate the control flow to debug the workflow.
+In the right-click menu of each node, the developer may conduct the following control flow manipulations:
+
+- **Goto & Execute**: Force the control flow to start executing from the right-clicked node.
+- **Goto & Execute 1 Step**: Force the control flow to execute the right-clicked node and halt after the execution, which is essentially *single step debugging*.
+- **Goto**: Force the control flow to set the right-clicked node to be the current node and halt without execution.
+
+<img style="max-height: 20vh" :src="$withBase('/control-flow-manipulation.png')">
 
 ### Exporting a Labeling Tool
 
