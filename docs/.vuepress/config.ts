@@ -1,8 +1,7 @@
 import { defineUserConfig } from 'vuepress'
 import type { DefaultThemeOptions } from 'vuepress'
 
-// const base = '';
-const base = '/OneLabeler.github.io/';
+const base = '/OneLabeler-doc/';
 
 export default defineUserConfig<DefaultThemeOptions>({
   base,
