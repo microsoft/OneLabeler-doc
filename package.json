@@ -1,5 +1,5 @@
 {
-  "name": "onelabeler.github.io",
+  "name": "onelabeler-doc",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -16,12 +16,12 @@
     "vuepress": "^2.0.0-beta.36"
   },
   "bugs": {
-    "url": "https://github.com/zhangyu94/OneLabeler.github.io/issues"
+    "url": "https://github.com/microsoft/OneLabeler-doc/issues"
   },
-  "homepage": "https://github.com/zhangyu94/OneLabeler.github.io#readme",
-  "license": "BSD-3-Clause",
+  "homepage": "https://github.com/microsoft/OneLabeler-doc#readme",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangyu94/OneLabeler.github.io.git"
+    "url": "git+https://github.com/microsoft/OneLabeler-doc.git"
   }
 }
