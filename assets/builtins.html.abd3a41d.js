@@ -1,0 +1,1 @@
+const e={key:"v-d8698060",path:"/builtins.html",title:"Builtins",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:2,title:"Computation Modules",slug:"computation-modules",children:[]},{level:2,title:"Labeling Tool Templates",slug:"labeling-tool-templates",children:[]}],filePathRelative:"builtins.md"};export{e as data};

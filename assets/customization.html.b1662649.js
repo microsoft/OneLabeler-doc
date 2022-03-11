@@ -1,0 +1,1 @@
+const e={key:"v-2e0d0b9f",path:"/customization.html",title:"Customization",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:2,title:"CLI",slug:"cli",children:[]},{level:2,title:"Guide",slug:"guide",children:[]}],filePathRelative:"customization.md"};export{e as data};

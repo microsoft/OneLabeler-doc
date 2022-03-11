@@ -1,0 +1,1 @@
+const a={key:"v-23c09452",path:"/background.html",title:"Background",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:2,title:"What is a data labeling tool?",slug:"what-is-a-data-labeling-tool",children:[]}],filePathRelative:"background.md"};export{a as data};
